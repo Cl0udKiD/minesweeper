@@ -18,7 +18,7 @@ wrapper.appendChild(title)
 
 const scoreTab = document.createElement('div')
 scoreTab.className = 'score'
-scoreTab.innerText= 'Time: 0 sec           Moves: 0'
+scoreTab.innerText= 'Time: 0 sec Moves: 0 Flags: 0'
 wrapper.appendChild(scoreTab)
 
 for(let i = 0; i<100;++i){
@@ -76,7 +76,13 @@ const soundClick = document.querySelector('.sound')
 soundClick.addEventListener('click',()=>{backgroundMusic()})
 backgroundSound.volume = 0.2;
 backgroundSound.loop = 'loop'
-backgroundSound.play()
+let justOpened = true
+document.body.addEventListener('click',()=>{
+    if(justOpened) {
+        backgroundSound.play()
+        justOpened = false
+    }
+})
 
 function changeBrightness(){
     document.body.classList.toggle('dark')
@@ -93,7 +99,7 @@ infoClick.addEventListener('click',()=>{
 const bombsCount = 10
 
 class cell{
-    wasClicked = false
+    wasClicked = false;
     position = 0;
     bombsAround = 0;
     isFlaged = false;
@@ -279,11 +285,13 @@ function blankClick(n){
 
 let timeInterval
 
+let flagCounter = 0
+
 function startTime(){
     if(!timeInterval){
         timeInterval = setInterval(()=>{
             currentTime++
-            document.querySelector('.score').innerText = `Time: ${currentTime} sec           Moves: ${moves}`
+            document.querySelector('.score').innerText = `Time: ${currentTime} sec Moves: ${moves} Flags: ${flagCounter}`
         },1000)
     }
 }
@@ -325,7 +333,7 @@ function newGame(n){
         clearInterval(timeInterval)
         timeInterval = null
     }
-    document.querySelector('.score').innerText= 'Time: 0 sec           Moves: 0'
+    document.querySelector('.score').innerText= 'Time: 0 sec Moves: 0 Flags: 0'
     moves = 0
     currentTime = 0
     resetCells()
@@ -413,10 +421,13 @@ function setFlag(i){
             cellsButtons[i].innerHTML = '⚑'
             cellsButtons[i].classList.add('flag')
             cells[i].isFlaged = true
+            flagCounter++
+
         }else{
             cellsButtons[i].innerHTML = '' 
             cellsButtons[i].classList.remove('flag')
             cells[i].isFlaged = false
+            flagCounter--
         }
     }
 }
@@ -453,11 +464,13 @@ function addMove(i){
 }
 
 for (let i = 0; i < 100; ++i){
-    cellsButtons[i].addEventListener('click',()=>{addMove(i);cellClick(i)})
+    cellsButtons[i].addEventListener('click',()=>{
+        if(!cells[i].isFlaged){
+            addMove(i)
+            cellClick(i)  
+        }
+    })
     cellsButtons[i].addEventListener('contextmenu', ()=>{setFlag(i)}, false);
 }
 
 newGameButton.addEventListener('click',()=>{newGame()})
-
-
-
