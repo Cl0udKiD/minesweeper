@@ -1,0 +1,170 @@
+.wrapper{
+    padding-top: 1vw;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.title{
+    font-size: 3vw;
+}
+
+body{
+    transition: 0.3s;
+    font-family: 'Trebuchet MS';
+}
+
+body.dark{
+    background-color: #595959;
+    color: white;
+}
+
+.score{
+    display: flex;
+    font-size: 2vw;
+}
+
+.score.end{
+    display: none;
+}
+
+.board{
+    display: flex;
+    flex-wrap: wrap;
+    width: 30vw;
+    height: 30vw;
+    background-color: grey;
+    border: 0.2vw solid black;
+}
+
+.controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 20vw;
+}
+
+.newGame{
+    font-size: 2vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 5px;
+    background-image: url(../assets/img/restart.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0.2vw solid black;
+    cursor: pointer;
+}
+
+.brightness{
+    font-size: 2vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 5px;
+    background-image: url(../assets/img/brightness.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0.2vw solid black;
+    cursor: pointer;
+}
+
+.sound{
+    font-size: 2vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 5px;
+    background-image: url(../assets/img/mute.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0.2vw solid black;
+    cursor: pointer;
+}
+
+.info{
+    font-size: 2vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 5px;
+    background-image: url(../assets/img/info.png);
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 0.2vw solid black;
+    cursor: pointer;
+}
+
+.sound.mute{
+    background-image: url(../assets/img/volume.png);
+}
+
+.board.end{
+    display: none;
+}
+
+.cell{
+    cursor: pointer;
+    padding: 0;
+    width: 3vw;
+    height: 3vw;
+    border: 0.2vw solid #595959;
+    background-color: lightgrey;
+    font-size: 2vw;
+}
+
+.cell.clicked{
+    background-color: #EEEEEE;
+}
+
+.cell.isBomb{
+    background-color: red;
+}
+
+.cell.win{
+    opacity: 0;
+}
+
+.cell.b0{
+    color: #EEEEEE;
+}
+
+.cell.b1{
+    color: #0000ff;
+}
+
+.cell.b2{
+    color: #008200;
+}
+
+.cell.b3{
+    color: #fe0000;
+}
+
+.cell.b4{
+    color: #000084;
+}
+
+.cell.b5{
+    color: #840000;
+}
+
+.cell.b6{
+    color: #008284;
+}
+
+.cell.b7{
+    color: #840084;
+}
+
+.cell.b8{
+    color: black;
+}
+
+.cell.flag{
+    color: red;
+}
